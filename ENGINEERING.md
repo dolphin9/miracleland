@@ -1,23 +1,26 @@
 # MiracleLand 工程文档
 
 **项目名称：** MiracleLand - 奇迹之地官方网站  
-**文档版本：** v1.0  
-**最后更新：** 2026-01-10  
-**作者：** 东方家在东方吗
+**文档版本：** v1.1  
+**最后更新：** 2026-01-12  
+**作者：** 东方家在东方吗  
+**更新说明：** 根据实现状态更新，补充已知问题、技术债务和实际依赖信息
 
 ---
 
 ## 目录
 
 1. [项目概述](#项目概述)
-2. [技术栈](#技术栈)
-3. [项目结构](#项目结构)
-4. [开发环境搭建](#开发环境搭建)
-5. [核心功能](#核心功能)
-6. [API 设计](#api-设计)
-7. [开发规范](#开发规范)
-8. [常见问题](#常见问题)
-9. [部署指南](#部署指南)
+2. [实现状态](#实现状态)
+3. [技术栈](#技术栈)
+4. [项目结构](#项目结构)
+5. [开发环境搭建](#开发环境搭建)
+6. [核心功能](#核心功能)
+7. [已知问题与技术债务](#已知问题与技术债务)
+8. [API 设计](#api-设计)
+9. [开发规范](#开发规范)
+10. [常见问题](#常见问题)
+11. [部署指南](#部署指南)
 
 ---
 
@@ -43,19 +46,92 @@ MiracleLand 是奇迹师九运的官方网站，致力于：
 
 ---
 
+## 实现状态
+
+### 开发进度总结
+
+**当前版本：** Phase 1 基本完成，Phase 2 部分完成
+
+**最后更新：** 2026-01-12
+
+#### Phase 1: 基础架构（90% 完成）
+
+- ✅ Vue 3 + Vite 项目初始化
+- ✅ Vue Router 4 配置和4个主路由设置
+- ✅ 响应式页面框架搭建
+- ✅ 全局样式和色彩方案定义
+- ⚠️ Layout 组件提取（导航栏/页脚重复代码待重构）
+
+#### Phase 2: 核心页面开发（70% 完成）
+
+- ✅ 首页（Index）完成
+- ✅ 世界观页面（WorldView）完成
+- ✅ OC 列表页面（OCView）完成（使用模拟数据）
+- ✅ 二创合集页面（CreationsView）完成（使用模拟数据）
+- ❌ OC 详情页面（需要动态路由）
+- ❌ 二创详情页面（需要动态路由）
+
+#### Phase 3: 后端集成（0% 完成，已阻塞）
+
+- ❌ Axios 依赖安装（已规划）
+- ❌ API 服务封装
+- ❌ WordPress 数据接入
+- ❌ 动态数据加载和错误处理
+
+#### Phase 4: 优化与增强（0% 完成）
+
+- ❌ 移动端动画优化
+- ❌ 高级筛选功能
+- ❌ 加载状态指示器
+- ❌ OC-创作关联展示
+
+#### Phase 5: 测试与部署（0% 完成）
+
+- ❌ 单元测试
+- ❌ 集成测试
+- ❌ 部署流程验证
+- ❌ 性能监控设置
+
+### 已安装依赖 vs 计划依赖
+
+| 依赖 | 状态 | 版本 | 用途 |
+|------|------|------|------|
+| Vue | ✅ 已安装 | 3.5.24 | 核心框架 |
+| Vite | ✅ 已安装 | 7.2.4 | 构建工具 |
+| Vue Router | ✅ 已安装 | 4.6.4 | 路由管理 |
+| Sass | ✅ 已安装 | 1.97.2 | CSS 预处理器 |
+| TypeScript | ✅ 已安装 | 5.9.3 | 类型检查（未使用） |
+| Axios | ⏳ 待安装 | - | HTTP 请求 |
+| Pinia | ⏳ 待安装 | - | 状态管理 |
+
+### 功能完成度统计
+
+```
+前端框架搭建        ████████░░  90%
+UI/UX 设计          ████████░░  85%
+响应式适配          █████████░  95%
+数据模型设计        ████░░░░░░  40%
+后端 API 集成       ░░░░░░░░░░   0%
+错误处理机制        ░░░░░░░░░░   0%
+性能优化            ░░░░░░░░░░   0%
+整体项目            ████░░░░░░  40%
+```
+
+---
+
 ## 技术栈
 
 ### 前端技术
 
-| 技术 | 版本 | 用途 |
-|------|------|------|
-| Vue | 3.5.24 | 核心框架 |
-| Vite | 7.2.4 | 构建工具 |
-| Vue Router | 4.6.4 | 路由管理 |
-| Axios | - | HTTP 请求（规划中） |
-| Pinia | - | 状态管理（规划中） |
-| Sass | 1.97.2 | CSS 预处理器 |
-| TypeScript | 5.9.3 | 类型检查 |
+| 技术 | 版本 | 用途 | 状态 |
+|------|------|------|------|
+| Vue | 3.5.24 | 核心框架 | ✅ 使用中 |
+| Vite | 7.2.4 | 构建工具 | ✅ 使用中 |
+| Vue Router | 4.6.4 | 路由管理 | ✅ 使用中 |
+| Sass | 1.97.2 | CSS 预处理器 | ✅ 已安装（未使用） |
+| TypeScript | 5.9.3 | 类型检查 | ✅ 已安装（未使用） |
+| Axios | - | HTTP 请求 | ⏳ 待安装 |
+| Pinia | - | 状态管理 | ⏳ 待安装 |
 
 ### 后端技术
 
@@ -81,19 +157,27 @@ MiracleLand 是奇迹师九运的官方网站，致力于：
 MiracleLand/
 ├── src/                          # 源代码目录
 │   ├── assets/                   # 静态资源
-│   │   └── (images, fonts等)
-│   ├── components/               # 可复用组件
-│   │   └── (Header, Footer, Layout等)
+│   │   └── (保留供图片、字体等)
+│   ├── components/               # 可复用组件（待创建）
+│   │   ├── HeaderNav.vue         # 导航栏（计划重构）
+│   │   └── Footer.vue            # 页脚（计划重构）
 │   ├── views/                    # 页面组件
-│   │   ├── Index.vue             # 欢迎页
-│   │   ├── WorldView.vue         # 世界观介绍页
-│   │   ├── OCView.vue            # 舰长OC展示页
-│   │   └── CreationsView.vue     # 二创合集页
+│   │   ├── Index.vue             # ✅ 欢迎页
+│   │   ├── WorldView.vue         # ✅ 世界观介绍页
+│   │   ├── OCView.vue            # ✅ 舰长OC展示页（模拟数据）
+│   │   ├── CreationsView.vue     # ✅ 二创合集页（模拟数据）
+│   │   ├── OCDetail.vue          # ❌ OC详情页（待创建）
+│   │   └── CreationDetail.vue    # ❌ 二创详情页（待创建）
 │   ├── router/                   # 路由配置
-│   │   └── index.js              # 路由定义
+│   │   └── index.js              # ✅ 路由定义（4个主路由）
+│   ├── services/                 # API 服务（待创建）
+│   │   └── api.js                # API 调用封装（计划）
+│   ├── stores/                   # Pinia 状态管理（待创建）
+│   │   ├── ocStore.js            # OC 数据管理（计划）
+│   │   └── creationStore.js      # 创作数据管理（计划）
 │   ├── App.vue                   # 根组件
 │   ├── main.js                   # 入口文件
-│   └── style.css                 # 全局样式
+│   └── style.css                 # 全局样式（待优化为 CSS 变量）
 ├── public/                       # 公开资源
 ├── index.html                    # HTML 模板
 ├── vite.config.js                # Vite 配置
@@ -101,23 +185,52 @@ MiracleLand/
 ├── README.md                     # 项目说明
 ├── project.md                    # 工程规划
 ├── TODO.md                       # 开发计划
-└── ENGINEERING.md                # 本文件
+└── ENGINEERING.md                # 本文件（v1.1）
 ```
 
 ### 关键文件说明
 
 #### `src/router/index.js`
-路由配置文件，定义了 4 个主要路由：
-- `/` - 欢迎页
-- `/world` - 世界观介绍页
-- `/oc` - 舰长 OC 展示页
-- `/creations` - 二创合集页
+路由配置文件，定义了 4 个主要路由（✅ 已实现）：
+- `/` → Index.vue - 欢迎页
+- `/world` → WorldView.vue - 世界观介绍页
+- `/oc` → OCView.vue - 舰长 OC 展示页
+- `/creations` → CreationsView.vue - 二创合集页
+
+**计划扩展：** 在 Phase 2 完成后添加动态路由
+- `/oc/:id` → OCDetail.vue - OC 详情页
+- `/creations/:id` → CreationDetail.vue - 创作详情页
 
 #### `src/views/`
 存放页面级组件，每个文件对应一个独立的页面。
 
+**已实现的页面：**
+- Index.vue - 首页（完整）
+- WorldView.vue - 世界观页（完整）
+- OCView.vue - OC 列表页（使用模拟数据）
+- CreationsView.vue - 创作列表页（使用模拟数据）
+
+**计划创建的页面：**
+- OCDetail.vue - OC 详情页（需动态路由）
+- CreationDetail.vue - 创作详情页（需动态路由）
+
 #### `src/components/`
 存放可复用的组件，如导航栏、页脚、布局组件等。
+
+**当前状态：** 该目录存在但为空。导航栏和页脚代码当前在各个 View 文件中重复定义，
+建议在 Phase 2 完成后进行重构，提取为独立的 `HeaderNav.vue` 和 `Footer.vue` 组件。
+
+#### `src/services/`（待创建）
+存放 API 调用和数据服务逻辑。
+
+**计划创建：** Phase 3 中创建 `api.js` 文件，统一管理 WordPress REST API 调用。
+
+#### `src/stores/`（待创建）
+存放 Pinia 状态管理 store。
+
+**计划创建：**
+- `ocStore.js` - 管理 OC 数据状态
+- `creationStore.js` - 管理创作数据状态
 
 ---
 
@@ -300,7 +413,96 @@ MiracleLand/
 
 ---
 
+## 已知问题与技术债务
+
+### 高优先级问题
+
+#### 1. 代码重复（导航栏和页脚）
+- **描述：** 导航栏和页脚代码在 Index.vue, WorldView.vue, OCView.vue, CreationsView.vue 中重复定义
+- **影响：** 维护成本高，修改导航栏需要更新 4 个文件
+- **解决方案：** 提取为 `HeaderNav.vue` 和 `Footer.vue` 组件，在各 View 中引入使用
+- **优先级：** 高
+- **预计工作量：** 2-3 小时
+
+#### 2. 硬编码样式值
+- **描述：** 颜色、间距、尺寸等设计值直接写在组件 `<style>` 块中，未提取为 CSS 变量
+- **示例：** `background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)`
+- **影响：** 主题更新困难，代码可读性降低
+- **解决方案：** 在 `src/style.css` 中定义全局 CSS 变量，在组件中使用 `var()`
+- **优先级：** 中
+- **预计工作量：** 1-2 小时
+
+#### 3. 缺少 API 集成层
+- **描述：** OCView 和 CreationsView 使用硬编码的模拟数据，缺少 Axios 和 API 服务层
+- **影响：** 无法连接 WordPress 后端，数据不可动态更新
+- **依赖：** Axios 和 Pinia 未安装
+- **解决方案：** 
+  1. 运行 `npm install axios pinia`
+  2. 创建 `src/services/api.js` 文件
+  3. 在 Pinia store 中管理 OC 和 Creation 数据
+  4. 修改 OCView 和 CreationsView 以使用 store 数据
+- **优先级：** 高
+- **预计工作量：** 3-4 小时
+
+#### 4. 缺少详情页路由
+- **描述：** OC 和 Creation 卡片有"查看详情"按钮，但目标路由不存在
+- **当前状态：** 按钮存在但无功能
+- **解决方案：** 需要创建：
+  - `src/views/OCDetail.vue` 组件
+  - `src/views/CreationDetail.vue` 组件
+  - `/oc/:id` 和 `/creations/:id` 动态路由
+- **优先级：** 高
+- **预计工作量：** 3-4 小时
+
+### 中优先级问题
+
+#### 5. TypeScript 未使用
+- **描述：** TypeScript (5.9.3) 已安装但项目使用纯 JavaScript
+- **建议：** 可选的优化项。如需类型安全，建议在下一个 Phase 迁移
+- **预计工作量：** 4-6 小时（全量迁移）
+
+#### 6. 缺少错误处理和加载状态
+- **描述：** API 调用时没有错误处理、超时处理或加载指示器
+- **影响：** 用户体验差，调试困难
+- **解决方案：** 在 API 服务层添加错误处理，在组件中添加加载状态管理
+- **优先级：** 中
+- **预计工作量：** 2 小时
+
+#### 7. Sass 已安装但未使用
+- **描述：** Sass (1.97.2) 在 package.json 中但所有样式使用纯 CSS
+- **建议：** 可选。建议统一使用 CSS 变量而非 SCSS 变量
+
+### 低优先级问题
+
+#### 8. 缺少单元测试和集成测试
+- **描述：** 项目中未配置测试框架（Vitest 或 Jest）
+- **优先级：** 低
+- **预计工作量：** 4-5 小时（Phase 5）
+
+#### 9. 部署流程未验证
+- **描述：** 部署指南存在，但实际生产构建和部署未测试
+- **优先级：** 低
+- **预计工作量：** 1-2 小时（Phase 5）
+
+### 建议修复顺序
+
+1. **立即处理：** 问题 1、2（提升代码质量）
+2. **Phase 3 前：** 问题 3、4（解锁 API 集成）
+3. **Phase 4：** 问题 6（优化用户体验）
+4. **可选：** 问题 5、7（技术优化）
+5. **Phase 5：** 问题 8、9（测试和部署）
+
+---
+
 ## API 设计
+
+### 当前状态
+
+⚠️ **重要提示：** 当前项目仍在使用 **硬编码的模拟数据**，API 集成尚未实现。
+
+**必要前置条件：**
+- 安装 Axios: `npm install axios`
+- 安装 Pinia: `npm install pinia`
 
 ### WordPress REST API 接口规划
 
@@ -474,18 +676,76 @@ const routes = [
 
 ### Q: 如何接入 WordPress API？
 
-**A:** 创建 `src/services/api.js` 文件：
+**A:** 
 
-```javascript
-import axios from 'axios'
+1. **第一步：安装依赖**
+   ```bash
+   npm install axios pinia
+   ```
 
-const API_BASE = 'https://your-wordpress.com/wp-json/wp/v2'
+2. **第二步：在 `src/main.js` 中初始化 Pinia**
+   ```javascript
+   import { createPinia } from 'pinia'
+   import { createApp } from 'vue'
+   import App from './App.vue'
 
-export const getWorld = () => axios.get(`${API_BASE}/pages?slug=world`)
-export const getOCs = () => axios.get(`${API_BASE}/oc`)
-export const getCreations = (category) => 
-  axios.get(`${API_BASE}/creations?category=${category}`)
-```
+   const app = createApp(App)
+   app.use(createPinia())  // 添加这一行
+   app.mount('#app')
+   ```
+
+3. **第三步：创建 `src/services/api.js` 文件**
+   ```javascript
+   import axios from 'axios'
+
+   const API_BASE = import.meta.env.VITE_API_BASE || 'https://your-wordpress.com/wp-json/wp/v2'
+
+   export const getWorld = () => axios.get(`${API_BASE}/pages?slug=world`)
+   export const getOCs = () => axios.get(`${API_BASE}/oc`)
+   export const getCreations = (category) => 
+     axios.get(`${API_BASE}/creations?category=${category}`)
+   ```
+
+4. **第四步：创建 Pinia Store（`src/stores/ocStore.js`）**
+   ```javascript
+   import { defineStore } from 'pinia'
+   import { ref } from 'vue'
+   import { getOCs } from '../services/api'
+
+   export const useOCStore = defineStore('oc', () => {
+     const ocs = ref([])
+     const loading = ref(false)
+     const error = ref(null)
+
+     const fetchOCs = async () => {
+       loading.value = true
+       try {
+         const response = await getOCs()
+         ocs.value = response.data
+       } catch (e) {
+         error.value = e.message
+       } finally {
+         loading.value = false
+       }
+     }
+
+     return { ocs, loading, error, fetchOCs }
+   })
+   ```
+
+5. **第五步：在 View 中使用（以 OCView.vue 为例）**
+   ```javascript
+   import { useOCStore } from '../stores/ocStore'
+   import { onMounted } from 'vue'
+
+   const ocStore = useOCStore()
+   
+   onMounted(() => {
+     ocStore.fetchOCs()
+   })
+   ```
+
+**重要提醒：** 在开发过程中，根据 WordPress 实际配置修改 `VITE_API_BASE` 环境变量。
 
 ### Q: 如何处理加载状态和错误？
 
@@ -661,4 +921,11 @@ npm run format           # 代码格式化
 
 ---
 
-*此文档持续更新中，最后修改于 2026-01-10*
+*此文档持续更新中，最后修改于 2026-01-12*
+
+### 文档变更历史
+
+| 版本 | 日期 | 修改说明 |
+|------|------|----------|
+| v1.1 | 2026-01-12 | 根据实现状态更新，新增「实现状态」、「已知问题与技术债务」、「下一步行动计划」章节 |
+| v1.0 | 2026-01-10 | 初始版本，项目规划与计划 |
