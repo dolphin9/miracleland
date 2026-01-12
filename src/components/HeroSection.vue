@@ -1,5 +1,5 @@
 <template>
-  <section class="hero-section">
+  <div class="hero-section">
     <div class="hero-content">
       <h2 class="hero-title">欢迎来到奇迹之地</h2>
       <p class="hero-subtitle">探索九运的故事，感受二创的魅力</p>
@@ -8,7 +8,7 @@
         <router-link to="/creations" class="btn btn-secondary">查看二创</router-link>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script setup>
@@ -17,11 +17,18 @@
 
 <style scoped>
 .hero-section {
-  background: url('@/assets/background.png') center center/cover no-repeat;
+   background: url('@/assets/background.png') center center/cover no-repeat;
   color: white;
-  padding: 6rem 1rem;
+  width: 1200px;
+  height: 800px;
+  margin: 0 auto;
+  padding: 0;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .hero-content {
   margin: 0 auto;
 }
@@ -88,6 +95,9 @@
   }
 }
 @media (max-width: 768px) {
+  .hero-section {
+    max-width: 1200px;
+  }
   .hero-title {
     font-size: 2rem;
   }
