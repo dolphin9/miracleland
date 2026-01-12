@@ -1,6 +1,6 @@
 <template>
   <div class="index-page">
-    <Navbar />
+
     <main class="main-content">
       <HeroSection />
     </main>
@@ -24,6 +24,12 @@ import HeroSection from '@/components/HeroSection.vue'
 
 /* 主要内容 */
 .main-content {
-  flex: 1;
+  flex: 2;
+  height:100dvh;
+}
+
+.hero-section {
+  flex:2;
+  aspect-ratio: 5 / 3;
 }
 </style>

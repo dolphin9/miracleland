@@ -17,12 +17,8 @@
 
 <style scoped>
 .hero-section {
-   background: url('@/assets/background.png') center center/cover no-repeat;
+  background: url('@/assets/background.png') center center/cover no-repeat;
   color: white;
-  width: 1200px;
-  height: 800px;
-  margin: 0 auto;
-  padding: 0;
   text-align: center;
   display: flex;
   align-items: center;
@@ -95,9 +91,6 @@
   }
 }
 @media (max-width: 768px) {
-  .hero-section {
-    max-width: 1200px;
-  }
   .hero-title {
     font-size: 2rem;
   }
