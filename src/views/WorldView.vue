@@ -1,18 +1,6 @@
 <template>
   <div class="world-view-page">
-    <!-- 导航栏 -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <h1 class="site-title">奇迹之地</h1>
-        <ul class="nav-links">
-          <li><router-link to="/" class="nav-link">首页</router-link></li>
-          <li><router-link to="/world" class="nav-link active">世界观</router-link></li>
-          <li><router-link to="/oc" class="nav-link">舰长 OC</router-link></li>
-          <li><router-link to="/creations" class="nav-link">二创合集</router-link></li>
-        </ul>
-      </div>
-    </nav>
-
+    <Navbar />
     <!-- 主要内容 -->
     <main class="main-content">
       <div class="content-container">
@@ -55,16 +43,13 @@
         </section>
       </div>
     </main>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-      <p>&copy; 2026 奇迹师九运</p>
-      <p>本网站为粉丝制作</p>
-    </footer>
+    <Footer />
   </div>
 </template>
 
 <script setup>
+import Navbar from '@/components/Navbar.vue'
+import Footer from '@/components/Footer.vue'
 // 奇迹之地介绍页逻辑
 </script>
 
