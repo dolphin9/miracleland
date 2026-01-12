@@ -48,8 +48,8 @@
 </template>
 
 <script setup>
-import Navbar from '@/components/Navbar.vue'
-import Footer from '@/components/Footer.vue'
+import Navbar from '../components/Navbar.vue'
+import Footer from '../components/Footer.vue'
 // 奇迹之地介绍页逻辑
 </script>
 

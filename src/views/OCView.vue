@@ -1,18 +1,6 @@
 <template>
   <div class="oc-view-page">
-    <!-- 导航栏 -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <h1 class="site-title">奇迹之地</h1>
-        <ul class="nav-links">
-          <li><router-link to="/" class="nav-link">首页</router-link></li>
-          <li><router-link to="/world" class="nav-link">世界观</router-link></li>
-          <li><router-link to="/oc" class="nav-link active">舰长 OC</router-link></li>
-          <li><router-link to="/creations" class="nav-link">二创合集</router-link></li>
-        </ul>
-      </div>
-    </nav>
-
+    <Navbar />
     <!-- 主要内容 -->
     <main class="main-content">
       <div class="content-container">
@@ -32,17 +20,14 @@
         </div>
       </div>
     </main>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-      <p>&copy; 2026 奇迹师九运</p>
-      <p>本网站为粉丝制作</p>
-    </footer>
+    <Footer />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import Navbar from '../components/Navbar.vue'
+import Footer from '../components/Footer.vue'
 
 // 示例数据，后续会从 WordPress API 获取
 const ocList = ref([
@@ -60,53 +45,6 @@ const ocList = ref([
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-/* 导航栏样式 */
-.navbar {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.site-title {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin: 0;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-link {
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.nav-link:hover,
-.nav-link.active {
-  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* 主要内容 */
@@ -191,19 +129,6 @@ const ocList = ref([
 
 .view-btn:hover {
   opacity: 0.9;
-}
-
-/* 页脚 */
-.footer {
-  background-color: #f5f5f5;
-  color: #666;
-  text-align: center;
-  padding: 2rem 1rem;
-  border-top: 1px solid #ddd;
-}
-
-.footer p {
-  margin: 0.5rem 0;
 }
 
 /* 响应式设计 */
