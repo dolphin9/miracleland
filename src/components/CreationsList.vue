@@ -31,7 +31,12 @@
         <div class="col-category">类别</div>
         <div class="col-date">时间</div>
       </div>
-      <div class="creation-item" v-for="creation in filteredCreations" :key="creation.id">
+      <div 
+        class="creation-item" 
+        v-for="creation in filteredCreations" 
+        :key="creation.id"
+        @click="viewCreationDetail(creation.id)"
+      >
         <div class="col-title">{{ creation.title }}</div>
         <div class="col-author">{{ creation.author }}</div>
         <div class="col-category">
@@ -50,8 +55,11 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import CreationsCarousel from './CreationsCarousel.vue'
 import AnnouncementBoard from './AnnouncementBoard.vue'
+
+const router = useRouter()
 
 const categories = ['全部', '视频', '歌曲', '手工', '照片', '绘画']
 const activeCategory = ref('全部')
@@ -108,6 +116,10 @@ const filteredCreations = computed(() => {
   }
   return creations.value.filter(creation => creation.category === activeCategory.value)
 })
+
+const viewCreationDetail = (id) => {
+  router.push(`/creations/${id}`)
+}
 </script>
 
 <style scoped>
@@ -210,11 +222,13 @@ const filteredCreations = computed(() => {
   padding: 1.2rem 1.5rem;
   border-bottom: 1px solid #f0f0f0;
   align-items: center;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
 }
 
 .creation-item:hover {
   background-color: #f9f9f9;
+  transform: translateX(4px);
 }
 
 .creation-item:last-child {

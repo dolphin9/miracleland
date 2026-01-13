@@ -14,7 +14,7 @@
             <div class="card-info">
               <h3>{{ oc.name }}</h3>
               <p class="oc-id">舰长 ID: {{ oc.id }}</p>
-              <button class="view-btn">查看详情</button>
+              <button @click="viewOCDetail(oc.routeId)" class="view-btn">查看详情</button>
             </div>
           </div>
         </div>
@@ -26,18 +26,25 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
 
+const router = useRouter()
+
 // 示例数据，后续会从 WordPress API 获取
 const ocList = ref([
-  { id: '舰长001', name: '舰长一' },
-  { id: '舰长002', name: '舰长二' },
-  { id: '舰长003', name: '舰长三' },
-  { id: '舰长004', name: '舰长四' },
-  { id: '舰长005', name: '舰长五' },
-  { id: '舰长006', name: '舰长六' }
+  { id: '舰长001', name: '1', routeId: '001' },
+  { id: '舰长002', name: '2', routeId: '002' },
+  { id: '舰长003', name: '3', routeId: '003' },
+  { id: '舰长004', name: '4', routeId: '004' },
+  { id: '舰长005', name: '5', routeId: '005' },
+  { id: '舰长006', name: '6', routeId: '006' }
 ])
+
+const viewOCDetail = (routeId) => {
+  router.push(`/oc/${routeId}`)
+}
 </script>
 
 <style scoped>

@@ -4,7 +4,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Index from '../views/Index.vue'
 import WorldView from '../views/WorldView.vue'
 import OCView from '../views/OCView.vue'
+import OCDetailView from '../views/OCDetailView.vue'
 import CreationsView from '../views/CreationsView.vue'
+import CreationDetailView from '../views/CreationDetailView.vue'
 
 // 定义路由
 const routes = [
@@ -33,11 +35,27 @@ const routes = [
     }
   },
   {
+    path: '/oc/:id',
+    name: 'OCDetailView',
+    component: OCDetailView,
+    meta: {
+      title: '奇迹之地 - OC 详情'
+    }
+  },
+  {
     path: '/creations',
     name: 'CreationsView',
     component: CreationsView,
     meta: {
       title: '奇迹之地 - 二创合集'
+    }
+  },
+  {
+    path: '/creations/:id',
+    name: 'CreationDetailView',
+    component: CreationDetailView,
+    meta: {
+      title: '奇迹之地 - 二创详情'
     }
   }
 ]
