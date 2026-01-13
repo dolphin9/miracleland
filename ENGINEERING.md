@@ -83,16 +83,19 @@ MiracleLand/
 ├── src/                          # 源代码目录
 │   ├── assets/                   # 静态资源
 │   │   └── (保留供图片、字体等)
-│   ├── components/               # 可复用组件（待创建）
-│   │   ├── HeaderNav.vue         # 导航栏（计划重构）
-│   │   └── Footer.vue            # 页脚（计划重构）
+│   ├── components/               # 可复用组件
+│   │   ├── Navbar.vue            # ✅ 导航栏组件
+│   │   ├── Footer.vue            # ✅ 页脚组件
+│   │   ├── HeroSection.vue       # ✅ Hero 区域组件
+│   │   ├── HeroContent.vue       # ✅ Hero 内容组件
+│   │   ├── JiuyunSection.vue     # ✅ 九运角色介绍组件
+│   │   ├── WorldSection.vue      # ✅ 奇迹之地背景组件
+│   │   └── HelloWorld.vue        # 示例组件
 │   ├── views/                    # 页面组件
 │   │   ├── Index.vue             # ✅ 欢迎页
 │   │   ├── WorldView.vue         # ✅ 世界观介绍页
 │   │   ├── OCView.vue            # ✅ 舰长OC展示页（模拟数据）
-│   │   ├── CreationsView.vue     # ✅ 二创合集页（模拟数据）
-│   │   ├── OCDetail.vue          # ❌ OC详情页（待创建）
-│   │   └── CreationDetail.vue    # ❌ 二创详情页（待创建）
+│   │   └── CreationsView.vue     # ✅ 二创合集页（模拟数据）
 │   ├── router/                   # 路由配置
 │   │   └── index.js              # ✅ 路由定义（4个主路由）
 │   ├── services/                 # API 服务（待创建）
@@ -102,7 +105,7 @@ MiracleLand/
 │   │   └── creationStore.js      # 创作数据管理（计划）
 │   ├── App.vue                   # 根组件
 │   ├── main.js                   # 入口文件
-│   └── style.css                 # 全局样式（待优化为 CSS 变量）
+│   └── style.css                 # 全局样式
 ├── public/                       # 公开资源
 ├── index.html                    # HTML 模板
 ├── vite.config.js                # Vite 配置
@@ -142,8 +145,15 @@ MiracleLand/
 #### `src/components/`
 存放可复用的组件，如导航栏、页脚、布局组件等。
 
-**当前状态：** 该目录存在但为空。导航栏和页脚代码当前在各个 View 文件中重复定义，
-建议在 Phase 2 完成后进行重构，提取为独立的 `HeaderNav.vue` 和 `Footer.vue` 组件。
+**当前状态：** 已完成关键组件化重构。已提取的组件包括：
+- `Navbar.vue` - 导航栏
+- `Footer.vue` - 页脚
+- `HeroSection.vue` - Hero 区域
+- `HeroContent.vue` - Hero 内容
+- `JiuyunSection.vue` - 九运角色介绍
+- `WorldSection.vue` - 奇迹之地背景介绍
+
+这些组件已在各页面中正确引入使用，消除了代码冗余。
 
 #### `src/services/`（待创建）
 存放 API 调用和数据服务逻辑。
