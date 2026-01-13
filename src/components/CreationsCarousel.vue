@@ -95,7 +95,7 @@ onUnmounted(() => {
 <style scoped>
 .carousel-container {
   position: relative;
-  width: 100%;
+  max-width: 800px;
   margin-bottom: 2rem;
   overflow: hidden;
 }
@@ -103,7 +103,7 @@ onUnmounted(() => {
 .carousel {
   position: relative;
   width: 100%;
-  height: 300px;
+  aspect-ratio: 16/9;
   overflow: hidden;
   border-radius: 8px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);

@@ -1,7 +1,14 @@
 <template>
   <div class="creations-container">
-    <!-- 轮播组件 -->
-    <CreationsCarousel />
+    <!-- 轮播和公告栏 -->
+    <div class="carousel-announcement-wrapper">
+      <div class="carousel-section">
+        <CreationsCarousel />
+      </div>
+      <div class="announcement-section">
+        <AnnouncementBoard />
+      </div>
+    </div>
 
     <!-- 分类筛选 -->
     <div class="categories">
@@ -44,6 +51,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import CreationsCarousel from './CreationsCarousel.vue'
+import AnnouncementBoard from './AnnouncementBoard.vue'
 
 const categories = ['全部', '视频', '歌曲', '手工', '照片', '绘画']
 const activeCategory = ref('全部')
@@ -105,6 +113,43 @@ const filteredCreations = computed(() => {
 <style scoped>
 .creations-container {
   width: 100%;
+}
+
+/* 轮播和公告栏布局 */
+.carousel-announcement-wrapper {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.carousel-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.carousel-section :deep(.carousel-container) {
+  max-width: 100%;
+  margin-bottom: 0;
+}
+
+.announcement-section {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+/* 小屏响应式 */
+@media (max-width: 900px) {
+  .carousel-announcement-wrapper {
+    flex-direction: column-reverse;
+  }
+
+  .announcement-section {
+    width: 100%;
+  }
+
+  .announcement-section :deep(.announcement-content) {
+    max-height: 150px;
+  }
 }
 
 /* 分类筛选 */
