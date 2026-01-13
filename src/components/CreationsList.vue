@@ -1,5 +1,8 @@
 <template>
   <div class="creations-container">
+    <!-- 轮播组件 -->
+    <CreationsCarousel />
+
     <!-- 分类筛选 -->
     <div class="categories">
       <button
@@ -40,6 +43,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import CreationsCarousel from './CreationsCarousel.vue'
 
 const categories = ['全部', '视频', '歌曲', '手工', '照片', '绘画']
 const activeCategory = ref('全部')
