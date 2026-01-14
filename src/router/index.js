@@ -62,7 +62,7 @@ const routes = [
 
 // 创建路由实例
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/miracleland/'),
   routes
 })
 
