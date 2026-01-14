@@ -22,9 +22,11 @@ import HeroContent from './HeroContent.vue'
 
 @media (max-width: 768px) {
   .hero-section {
-    width: 100%;
-    height: auto;
+    width: 100vw;
+    height: 100vh;
     padding: 3rem 1rem;
+    background-size: cover;
+    background-position: center center;
   }
 }
 </style>
