@@ -10,7 +10,7 @@ import HeroContent from './HeroContent.vue'
 
 <style scoped>
 .hero-section {
-  background: url('@/assets/background.png') center center/cover no-repeat;
+  background: url('@/assets/background.webp') center center/cover no-repeat;
   color: white;
   margin: 0 auto;
   padding: 0;
