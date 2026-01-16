@@ -31,7 +31,7 @@
           </div>
           
           <div v-if="creation.ocName" class="info-tag">
-            <span class="tag-label">🎭 相关 OC</span>
+            <span class="tag-label">🎭 作者舰长</span>
             <span class="tag-value oc-link" @click="goToOC(creation.ocId)">{{ creation.ocName }}</span>
           </div>
         </div>
