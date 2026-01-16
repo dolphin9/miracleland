@@ -1,10 +1,10 @@
 # MiracleLand 工程文档
 
 **项目名称：** MiracleLand - 奇迹之地官方网站  
-**文档版本：** v1.1  
-**最后更新：** 2026-01-12  
+**文档版本：** v1.2  
+**最后更新：** 2026-01-17  
 **作者：** 东方家在东方吗  
-**更新说明：** 根据实现状态更新，补充已知问题、技术债务和实际依赖信息
+**更新说明：** 更新项目结构和关键文件说明，补充完整的组件列表和视图列表
 
 ---
 
@@ -81,23 +81,33 @@ MiracleLand 是奇迹师九运的官方网站，致力于：
 ```
 MiracleLand/
 ├── src/                          # 源代码目录
-│   ├── assets/                   # 静态资源
-│   │   └── (保留供图片、字体等)
-│   ├── components/               # 可复用组件
+│   ├── assets/                   # 静态资源（图片、字体等）
+│   ├── components/               # 可复用组件（13个）
 │   │   ├── Navbar.vue            # ✅ 导航栏组件
 │   │   ├── Footer.vue            # ✅ 页脚组件
 │   │   ├── HeroSection.vue       # ✅ Hero 区域组件
 │   │   ├── HeroContent.vue       # ✅ Hero 内容组件
 │   │   ├── JiuyunSection.vue     # ✅ 九运角色介绍组件
 │   │   ├── WorldSection.vue      # ✅ 奇迹之地背景组件
-│   │   └── HelloWorld.vue        # 示例组件
-│   ├── views/                    # 页面组件
-│   │   ├── Index.vue             # ✅ 欢迎页
+│   │   ├── AnnouncementBoard.vue # ✅ 公告栏组件（富文本支持）
+│   │   ├── OCCard.vue            # ✅ OC 卡片组件
+│   │   ├── OCDetail.vue          # ✅ OC 详情展示组件
+│   │   ├── CreationsList.vue     # ✅ 二创列表组件
+│   │   ├── CreationsCarousel.vue # ✅ 二创轮播组件
+│   │   ├── CreationShower.vue    # ✅ 二创展示组件
+│   │   └── MediaPlayer.vue       # ✅ 媒体播放器组件
+│   ├── views/                    # 页面组件（6个）
+│   │   ├── Index.vue             # ✅ 首页（欢迎页）
 │   │   ├── WorldView.vue         # ✅ 世界观介绍页
-│   │   ├── OCView.vue            # ✅ 舰长OC展示页（模拟数据）
-│   │   └── CreationsView.vue     # ✅ 二创合集页（模拟数据）
+│   │   ├── OCView.vue            # ✅ 舰长OC列表页（模拟数据）
+│   │   ├── OCDetailView.vue      # ✅ OC详情页（动态路由）
+│   │   ├── CreationsView.vue     # ✅ 二创合集页（模拟数据）
+│   │   └── CreationDetailView.vue # ✅ 二创详情页（动态路由）
+│   ├── mock/                     # 模拟数据
+│   │   ├── ocList.js             # ✅ OC 列表模拟数据
+│   │   └── creations.js          # ✅ 二创列表模拟数据
 │   ├── router/                   # 路由配置
-│   │   └── index.js              # ✅ 路由定义（4个主路由）
+│   │   └── index.js              # ✅ 路由定义（6个路由，含动态路由）
 │   ├── services/                 # API 服务（待创建）
 │   │   └── api.js                # API 调用封装（计划）
 │   ├── stores/                   # Pinia 状态管理（待创建）
@@ -107,53 +117,97 @@ MiracleLand/
 │   ├── main.js                   # 入口文件
 │   └── style.css                 # 全局样式
 ├── public/                       # 公开资源
+│   └── _redirects                # Netlify 重定向配置
+├── .github/                      # GitHub 工作流
+├── dist/                         # 构建输出目录
 ├── index.html                    # HTML 模板
 ├── vite.config.js                # Vite 配置
+├── vercel.json                   # Vercel 部署配置
 ├── package.json                  # 项目配置
 ├── README.md                     # 项目说明
 ├── project.md                    # 工程规划
 ├── TODO.md                       # 开发计划
-└── ENGINEERING.md                # 本文件（v1.1）
+├── DEPLOY.md                     # 部署文档
+└── ENGINEERING.md                # 本文件（v1.2）
 ```
 
 ### 关键文件说明
 
 #### `src/router/index.js`
-路由配置文件，定义了 4 个主要路由（✅ 已实现）：
-- `/` → Index.vue - 欢迎页
+路由配置文件，定义了 6 个路由（✅ 已实现）：
+
+**基础路由：**
+- `/` → Index.vue - 首页（欢迎页）
 - `/world` → WorldView.vue - 世界观介绍页
-- `/oc` → OCView.vue - 舰长 OC 展示页
+- `/oc` → OCView.vue - 舰长 OC 列表页
 - `/creations` → CreationsView.vue - 二创合集页
 
-**计划扩展：** 在 Phase 2 完成后添加动态路由
-- `/oc/:id` → OCDetail.vue - OC 详情页
-- `/creations/:id` → CreationDetail.vue - 创作详情页
+**动态路由：**
+- `/oc/:id` → OCDetailView.vue - OC 详情页（✅ 已实现）
+- `/creations/:id` → CreationDetailView.vue - 二创详情页（✅ 已实现）
+
+**路由特性：**
+- 支持动态参数传递（:id）
+- 每个路由配置 meta 信息（页面标题）
+- 自动滚动到顶部行为
 
 #### `src/views/`
 存放页面级组件，每个文件对应一个独立的页面。
 
-**已实现的页面：**
-- Index.vue - 首页（完整）
-- WorldView.vue - 世界观页（完整）
-- OCView.vue - OC 列表页（使用模拟数据）
-- CreationsView.vue - 创作列表页（使用模拟数据）
+**已实现的页面（共 6 个）：**
+- `Index.vue` - 首页（完整，含Hero区域和公告栏）
+- `WorldView.vue` - 世界观页（完整，含九运介绍和世界观背景）
+- `OCView.vue` - OC 列表页（使用模拟数据，网格布局）
+- `OCDetailView.vue` - OC 详情页（✅ 已完成，支持动态路由）
+- `CreationsView.vue` - 二创合集页（使用模拟数据，含分类筛选）
+- `CreationDetailView.vue` - 二创详情页（✅ 已完成，支持动态路由）
 
-**计划创建的页面：**
-- OCDetail.vue - OC 详情页（需动态路由）
-- CreationDetail.vue - 创作详情页（需动态路由）
+**数据源：**
+当前所有页面使用 `src/mock/` 目录下的模拟数据，后续将对接 WordPress REST API。
 
 #### `src/components/`
 存放可复用的组件，如导航栏、页脚、布局组件等。
 
-**当前状态：** 已完成关键组件化重构。已提取的组件包括：
-- `Navbar.vue` - 导航栏
-- `Footer.vue` - 页脚
-- `HeroSection.vue` - Hero 区域
-- `HeroContent.vue` - Hero 内容
-- `JiuyunSection.vue` - 九运角色介绍
-- `WorldSection.vue` - 奇迹之地背景介绍
+**当前状态：** 已完成关键组件化重构，共 13 个组件。
 
-这些组件已在各页面中正确引入使用，消除了代码冗余。
+**布局组件：**
+- `Navbar.vue` - 导航栏（粘性定位，响应式）
+- `Footer.vue` - 页脚（版权信息）
+- `HeroSection.vue` - Hero 区域容器
+- `HeroContent.vue` - Hero 内容展示
+
+**内容组件：**
+- `JiuyunSection.vue` - 九运角色介绍（双栏布局）
+- `WorldSection.vue` - 奇迹之地背景介绍
+- `AnnouncementBoard.vue` - 公告栏（支持富文本和响应式）
+
+**OC 相关组件：**
+- `OCCard.vue` - OC 卡片（用于列表展示）
+- `OCDetail.vue` - OC 详细信息展示
+
+**二创相关组件：**
+- `CreationsList.vue` - 二创列表展示
+- `CreationsCarousel.vue` - 二创轮播组件
+- `CreationShower.vue` - 二创内容展示
+- `MediaPlayer.vue` - 媒体播放器（视频/音频）
+
+**组件特性：**
+- 完全模块化，高度可复用
+- 使用 Vue 3 Composition API
+- 响应式设计，适配多端
+- 统一的样式规范
+
+#### `src/mock/`
+存放模拟数据，用于前端开发阶段。
+
+**已创建的文件：**
+- `ocList.js` - OC 列表模拟数据（包含多个舰长 OC 信息）
+- `creations.js` - 二创列表模拟数据（包含多种类型的创作）
+
+**数据结构：**
+- 模拟真实 API 返回的数据格式
+- 包含完整的字段（id, name, type, description, url 等）
+- 便于后期无缝切换到真实 API
 
 #### `src/services/`（待创建）
 存放 API 调用和数据服务逻辑。
